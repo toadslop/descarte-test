@@ -4,7 +4,7 @@ import { loggingRequested, logIteration } from "./utils.mjs";
 // Initialize original deck as new instance of Deck class.
 // See Deck.mjs for more information.
 const originalDeck = new Deck();
-if (loggingRequested) logIteration(0, originalDeck);
+if (loggingRequested()) logIteration(0, originalDeck);
 
 // Call the shuffle method, which implements the requested algorithm.
 let finalDeck = originalDeck.shuffle();
@@ -12,12 +12,12 @@ let finalDeck = originalDeck.shuffle();
 let shuffleCount = 1;
 
 while (!originalDeck.equals(finalDeck)) {
-  if (loggingRequested) logIteration(shuffleCount, finalDeck)
+  if (loggingRequested()) logIteration(shuffleCount, finalDeck)
   finalDeck = finalDeck.shuffle();
   shuffleCount += 1;
 }
 
-if (loggingRequested) logIteration(shuffleCount, finalDeck)
+if (loggingRequested()) logIteration(shuffleCount, finalDeck)
 
 console.info(
   `Total number of shuffles to return to original state: ${shuffleCount}`
