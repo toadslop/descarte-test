@@ -1,4 +1,4 @@
-# descarte-test
+# Time Machine Test
 To complete the test, I wrote two files.
 `main.js` runs the test.
 Logic for the Deck is contained in the Deck class located in `Deck.js`.
