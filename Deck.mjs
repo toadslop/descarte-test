@@ -1,26 +1,26 @@
-// This class manages operations for the deck
+import { shuffleCounter, event } from "./utils.mjs";
+import { arrayRequired, fiftyThreeRequired, wrongType } from "./errors.mjs";
+import { SHUFFLE } from "constants.mjs";
 
 export default class Deck {
   // The constructor generates a new deck or accepts an array as a deck
   constructor(cards = Deck.genDeck()) {
-    if (!Array.isArray(cards))
-      throw new TypeError(`Deck must be initialized with an array but received ${typeof cards}`);
-    if (cards.length !== 53)
-      throw new RangeError(
-        `Deck class expects to be initialized with an array length 53 but received an array of length ${cards.length}`
-      );
-
+    if (!Array.isArray(cards)) throw arrayRequired(cards);
+    if (cards.length !== 53) throw fiftyThreeRequired(cards);
     this._cards = cards;
+    this._shuffleCount = 0;
   }
 
   // Shuffles the deck and returns a new deck.
   shuffle() {
+    event.emit(SHUFFLE, this.cards, shuffleCounter.next().value); // For logging purposes
     const [lowerHalf, upperHalf] = this.split();
     return new Deck(Deck.zip(lowerHalf, upperHalf));
   }
 
   // Helper method used for shuffling. Splits deck in half.
-  // Reverses for convenience in shuffling.
+  // Reverses for convenience in shuffling because we sort
+  // by pulling from the top of the deck.
   split = () => [
     this.cards.slice(0, this.halfPoint).reverse(),
     this.cards.slice(this.halfPoint, this.count).reverse(),
@@ -55,10 +55,7 @@ export default class Deck {
 
   // Equality checker for decks.
   equals(deck) {
-    if (!(deck instanceof Deck))
-      throw new TypeError(
-        `Input of Deck equals method requires an instance of Deck but received ${Object.getPrototypeOf(deck)}`
-      );
+    if (!(deck instanceof Deck)) throw wrongType(deck);
     return (
       this.count === deck.count &&
       this.cards.every((card, index) => card === deck.cards[index])
