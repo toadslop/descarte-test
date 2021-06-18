@@ -1,7 +1,13 @@
 # Time Machine Test
-To complete the test, I wrote two files.
 `main.js` runs the test.
+
 Logic for the Deck is contained in the Deck class located in `Deck.js`.
+
+Utility methods are in the `utils.mjs` file.
+These handle are for logging and counting shuffles.
+
+`errors.mjs` contains some methods that generate errors for the deck class.
+This is for keeping the Deck class code clean.
 
 For explanations, please refer to the commends in each file.
 
