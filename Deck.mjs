@@ -1,6 +1,6 @@
 import { shuffleCounter, event } from "./utils.mjs";
 import { arrayRequired, fiftyThreeRequired, wrongType } from "./errors.mjs";
-import { SHUFFLE } from "constants.mjs";
+import { SHUFFLE } from "./constants.mjs";
 
 export default class Deck {
   // The constructor generates a new deck or accepts an array as a deck

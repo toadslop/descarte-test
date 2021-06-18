@@ -6,7 +6,7 @@ import {
   logResult,
   event,
 } from "./utils.mjs";
-import { SHUFFLE } from "constants.mjs";
+import { SHUFFLE } from "./constants.mjs";
 
 // Listener to handle logging
 if (loggingRequested()) event.on(SHUFFLE, logShuffle);
