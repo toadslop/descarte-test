@@ -11,7 +11,7 @@ export const fiftyThreeRequired = cards =>
     `Deck class expects to be initialized with an array length 53 but received an array of length ${cards.length}`
   );
 
-export const wrongType = deck =>
+export const requiresDeck = deck =>
   new TypeError(
     `Input of Deck equals method requires an instance of Deck but received ${Object.getPrototypeOf(
       deck

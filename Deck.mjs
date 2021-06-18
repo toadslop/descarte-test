@@ -1,5 +1,5 @@
 import { shuffleCounter, event } from "./utils.mjs";
-import { arrayRequired, fiftyThreeRequired, wrongType } from "./errors.mjs";
+import { arrayRequired, fiftyThreeRequired, requiresDeck } from "./errors.mjs";
 import { SHUFFLE } from "./constants.mjs";
 
 export default class Deck {
@@ -55,7 +55,7 @@ export default class Deck {
 
   // Equality checker for decks.
   equals(deck) {
-    if (!(deck instanceof Deck)) throw wrongType(deck);
+    if (!(deck instanceof Deck)) throw requiresDeck(deck);
     return (
       this.count === deck.count &&
       this.cards.every((card, index) => card === deck.cards[index])
