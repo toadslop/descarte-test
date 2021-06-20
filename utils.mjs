@@ -25,3 +25,13 @@ export const shuffleCounter = counterGenerator();
 
 // Defined event emitter to track shuffles. It's here to keep the Deck class clean.
 export const event = new EventEmitter();
+
+export const split = array => [
+  array.slice(0, halfPoint(array)),
+  array.slice(halfPoint(array), array.length),
+];
+
+const halfPoint = array => Math.floor(array.length / 2 + 1);
+
+export const zip = (lowerHalf, upperHalf) =>
+  lowerHalf.flatMap((card, i) => (upperHalf[i] ? [card, upperHalf[i]] : card));
