@@ -35,3 +35,9 @@ const halfPoint = array => Math.floor(array.length / 2 + 1);
 
 export const zip = (lowerHalf, upperHalf) =>
   lowerHalf.flatMap((card, i) => (upperHalf[i] ? [card, upperHalf[i]] : card));
+
+export const until = (condition, execute) => {
+  while (!condition()) {
+    execute();
+  }
+};
