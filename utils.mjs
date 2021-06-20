@@ -31,7 +31,7 @@ export const split = array => [
   array.slice(halfPoint(array), array.length),
 ];
 
-const halfPoint = array => Math.floor(array.length / 2 + 1);
+const halfPoint = array => Math.ceil(array.length / 2);
 
 export const zip = (lowerHalf, upperHalf) =>
   lowerHalf.flatMap((card, i) => (upperHalf[i] ? [card, upperHalf[i]] : card));
